@@ -15,7 +15,13 @@ module DahliaDataModels
 
       def copy_migrations
         migration_template 'create_dahlia_data_models.rb',
-          'db/migrate/create_dahlia_data_models.rb'
+          'db/migrate/create_dahlia_data_models.rb', migration_version: migration_version
+      end
+
+      def migration_version
+        if Rails::VERSION::MAJOR >= 5
+          "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
+        end
       end
     end
   end

@@ -7,7 +7,7 @@
 # Represent a listing image object. Provide mapping between Salesforce
 # object field names, Salesforce custom API field names, and domain
 # field names for listing images.
-class ListingImage < ActiveRecord::Base
+class ListingImage < ApplicationRecord
   include ObjectBase
 
   FIELD_NAME_MAPPINGS = [
