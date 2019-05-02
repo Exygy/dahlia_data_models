@@ -37,4 +37,23 @@ RSpec.describe Group, type: :model do
     g = Group.create(name: 'Stage', slug: 'smc', domain: 'herokuapp.com')
     expect(Group.for_domain('subdomain.herokuapp.com').slug).to eq('smc')
   end
+
+  it "owns multiple listings" do
+    g1 = Group.create(name: 'Group 1')
+    g2 = Group.create(name: 'Group 2')
+    Listing.create(name: 'Listing 1', group: g1)
+    Listing.create(name: 'Listing 2', group: g1)
+    Listing.create(name: 'Listing 3', group: g2)
+    expect(g1.listings.count).to eq(2)
+    expect(g2.listings.count).to eq(1)
+  end
+
+  it "owns hierarchical listings" do
+    g1 = Group.create(name: 'Parent Group')
+    g2 = Group.create(name: 'Child Group', parent: g1)
+    l1 = Listing.create(name: 'Parent Group - Listing 1', group: g1)
+    l2 = Listing.create(name: 'Child Group - Listing 2', group: g2)
+    listing_ids = Group.find(g1.id).listings_for_self_and_descendants.pluck(:id)
+    expect(listing_ids).to eq([l1.id, l2.id])
+  end
 end
