@@ -14,10 +14,10 @@ module DahliaDataModels
       end
 
       def copy_migrations
-        migration_template 'create_dahlia_data_models.rb',
-          'db/migrate/create_dahlia_data_models.rb', migration_version: migration_version
-        migration_template 'create_dahlia_group.rb',
-          'db/migrate/create_dahlia_group.rb', migration_version: migration_version
+        migration_template 'create_dahlia_listings.rb',
+          'db/migrate/create_dahlia_listings.rb', migration_version: migration_version
+        migration_template 'create_dahlia_groups.rb',
+          'db/migrate/create_dahlia_groups.rb', migration_version: migration_version
       end
 
       def migration_version

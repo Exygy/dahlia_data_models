@@ -1,4 +1,4 @@
-class CreateDahliaGroup < ActiveRecord::Migration[5.1]
+class CreateDahliaGroups < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :groups do |t|
       t.string :name
@@ -14,8 +14,10 @@ class CreateDahliaGroup < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    change_table :listings do |t|
-      t.integer :group_id
+    add_reference :listings, :group, foreign_key: true
+
+    if defined? User
+      add_reference :users, :group, foreign_key: true
     end
   end
 end
