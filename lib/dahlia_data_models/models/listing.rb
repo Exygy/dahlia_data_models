@@ -10,7 +10,7 @@
 class Listing < ApplicationRecord
   include ObjectBase
 
-  belongs_to :group
+  belongs_to :group, optional: true
 
   # TODO: Once we add more models and more fields, consider moving the
   # field mappings into YML files or other places.
