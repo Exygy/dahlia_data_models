@@ -18,6 +18,8 @@ module DahliaDataModels
           'db/migrate/create_dahlia_listings.rb', migration_version: migration_version
         migration_template 'create_dahlia_groups.rb',
           'db/migrate/create_dahlia_groups.rb', migration_version: migration_version
+        migration_template 'create_dahlia_units.rb',
+          'db/migrate/create_dahlia_units.rb', migration_version: migration_version
       end
 
       def migration_version
