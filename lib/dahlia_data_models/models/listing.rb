@@ -74,8 +74,10 @@ class Listing < ApplicationRecord
     { custom_api: 'Reserved_community_minimum_age', domain: 'reserved_community_minimum_age', salesforce: 'Reserved_community_minimum_age' },
     { custom_api: 'reservedDescriptor', domain: 'reserved_descriptor', salesforce: 'reservedDescriptor' },
     { custom_api: 'SASE_Required_for_Lottery_Ticket', domain: 'sase_required_for_lottery_ticket', salesforce: 'SASE_Required_for_Lottery_Ticket' },
+    { custom_api: 'showUnitFeatures', domain: 'show_unit_features', salesforce: 'showUnitFeatures' },
     { custom_api: 'Smoking_Policy', domain: 'smoking_policy', salesforce: 'Smoking_Policy' },
     { custom_api: 'Total_waitlist_openings', domain: 'total_waitlist_openings', salesforce: 'Total_waitlist_openings' },
+    { custom_api: 'Unit_Amenities', domain: 'unit_amenities', salesforce: 'Unit_Amenities' },
     { custom_api: 'Units_Available', domain: 'units_available', salesforce: 'Units_Available' },
     { custom_api: 'Year_Built', domain: 'year_built', salesforce: 'Year_Built' },
     # object fields
