@@ -51,4 +51,24 @@ module ObjectBase
       @fields[field_type]
     end
   end
+
+  def object_fields
+    []
+  end
+
+  def to_salesforce_from_db
+    salesforce_fields = {}
+
+    self.class::FIELD_NAME_MAPPINGS.each do |field_map|
+      salesforce_field_name = field_map[:salesforce]
+      # Add blank hashes for any fields that are objects
+      if object_fields.any? { |f| f[:salesforce] == salesforce_field_name}
+        salesforce_fields[salesforce_field_name] = {}
+      else
+        salesforce_fields[salesforce_field_name] = self.send(field_map[:domain])
+      end
+    end
+
+    salesforce_fields
+  end
 end

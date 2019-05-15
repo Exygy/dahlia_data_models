@@ -30,7 +30,7 @@ class Group < ApplicationRecord
       if group
         Group.find(group[0])
       else
-        raise 'No group could be found for domain'
+        raise "No group could be found for domain: #{domain}"
       end
     end
   end
