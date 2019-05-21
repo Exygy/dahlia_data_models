@@ -20,7 +20,10 @@ module DahliaDataModels
           'db/migrate/create_dahlia_groups.rb', migration_version: migration_version
         migration_template 'create_dahlia_units.rb',
           'db/migrate/create_dahlia_units.rb', migration_version: migration_version
-        migration_template 'add_unit_related_fields_to_listing.rb', 'db/migrate/add_unit_related_fields_to_listing.rb', migration_version: migration_version
+        migration_template 'add_unit_related_fields_to_listing.rb',
+          'db/migrate/add_unit_related_fields_to_listing.rb', migration_version: migration_version
+        migration_template 'add_gtm_key_to_groups.rb',
+          'db/migrate/add_gtm_key_to_groups.rb', migration_version: migration_version
       end
 
       def migration_version
