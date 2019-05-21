@@ -2,7 +2,6 @@ require "dahlia_data_models/version"
 
 module DahliaDataModels
   class Error < StandardError; end
-  # Your code goes here...
 
   class Engine < ::Rails::Engine
     config.eager_load_paths += [
