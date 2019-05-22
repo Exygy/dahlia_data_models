@@ -1,0 +1,14 @@
+Description:
+    Creates the database migrations for the DAHLIA objects.
+    Also creates a DB seed file to create some initial example data.
+
+Example:
+    rails generate dahlia_data_models:install
+
+    This will create:
+        db/migrations/[version number]_create_dahlia_listings.rb'
+        db/migrations/[version number]_create_dahlia_groups.rb'
+        db/migrations/[version number]_create_dahlia_units.rb'
+        db/migrations/[version number]_add_unit_related_fields_to_listing.rb'
+        db/migrations/[version number]add_gtm_key_to_groups.rb'
+        db/seeds.rb

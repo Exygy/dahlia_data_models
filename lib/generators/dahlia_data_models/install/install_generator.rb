@@ -26,6 +26,17 @@ module DahliaDataModels
           'db/migrate/add_gtm_key_to_groups.rb', migration_version: migration_version
       end
 
+      def copy_seed_files
+        copy_file "seeds.rb", "db/seeds.rb"
+        copy_file "seed_data/groups.json", "db/seed_data/groups.json"
+        copy_file "seed_data/sj_listing.json", "db/seed_data/sj_listing.json"
+        copy_file "seed_data/smc_listing.json", "db/seed_data/smc_listing.json"
+        copy_file "seed_data/test_listing.json", "db/seed_data/test_listing.json"
+        copy_file "seed_data/unit.json", "db/seed_data/unit.json"
+      end
+
+      private
+
       def migration_version
         if Rails::VERSION::MAJOR >= 5
           "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
