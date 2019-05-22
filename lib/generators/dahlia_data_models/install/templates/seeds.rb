@@ -20,11 +20,9 @@ def create_groups
 
   return if Group.exists?(slug: 'test')
   Group.create(
-    {
-      name: 'Test Group',
-      slug: 'test',
-      domain: Rails.env.development? ? 'localhost' : 'herokuapp.com'
-    }
+    name: 'Test Group',
+    slug: 'test',
+    domain: Rails.env.development? ? 'localhost' : 'herokuapp.com',
   )
 end
 
