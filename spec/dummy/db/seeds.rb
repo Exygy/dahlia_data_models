@@ -22,7 +22,7 @@ def create_groups
   Group.create(
     name: 'Test Group',
     slug: 'test',
-    domain: Rails.env.production? ? 'herokuapp.com' : 'localhost'
+    domain: Rails.env.production? ? 'herokuapp.com' : 'localhost',
   )
 end
 

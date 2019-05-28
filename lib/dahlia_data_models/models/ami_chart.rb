@@ -7,6 +7,7 @@ class AmiChart < ApplicationRecord
     mtsp_regular: 3,
   }
 
+  has_many :units
   belongs_to :group
 
   validates :group_id, uniqueness: {
