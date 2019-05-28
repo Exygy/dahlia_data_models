@@ -26,6 +26,8 @@ module DahliaDataModels
           'db/migrate/add_gtm_key_to_groups.rb', migration_version: migration_version
         migration_template 'create_dahlia_ami_charts.rb',
           'db/migrate/create_dahlia_ami_charts.rb', migration_version: migration_version
+        migration_template 'add_monthly_rent_percentage_to_units.rb',
+          'db/migrate/add_monthly_rent_percentage_to_units.rb', migration_version: migration_version
       end
 
       def copy_seed_files

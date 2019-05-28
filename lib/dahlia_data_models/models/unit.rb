@@ -52,6 +52,7 @@ class Unit < ApplicationRecord
     { custom_api: 'maxOccupancy', domain: 'max_occupancy', salesforce: 'Max_Occupancy' },
     { custom_api: 'minOccupancy', domain: 'min_occupancy', salesforce: 'Min_Occupancy' },
     { custom_api: 'BMR_Rent_Monthly', domain: 'monthly_rent', salesforce: 'BMR_Rent_Monthly' },
+    { custom_api: 'Rent_percent_of_income', domain: 'monthly_rent_as_percent_of_income', salesforce: 'Rent_percent_of_income' },
     { custom_api: 'Number_of_Bathrooms', domain: 'num_bathrooms', salesforce: 'Number_of_Bathrooms' },
     { custom_api: 'Number_of_Bedrooms', domain: 'num_bedrooms', salesforce: 'Number_of_Bedrooms' },
     { custom_api: 'Unit_Number', domain: 'number', salesforce: 'Unit_Number' },
