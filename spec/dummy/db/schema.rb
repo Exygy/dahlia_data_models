@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190503171210) do
+ActiveRecord::Schema.define(version: 20190528063857) do
+
+  create_table "ami_charts", force: :cascade do |t|
+    t.string "ami_values_file"
+    t.integer "chart_type"
+    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "group_id"
+    t.index ["chart_type", "year", "group_id"], name: "index_ami_charts_on_chart_type_and_year_and_group_id", unique: true
+    t.index ["group_id"], name: "index_ami_charts_on_group_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -24,6 +35,7 @@ ActiveRecord::Schema.define(version: 20190503171210) do
     t.integer "children_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gtm_key"
     t.index ["lft"], name: "index_groups_on_lft"
     t.index ["parent_id"], name: "index_groups_on_parent_id"
     t.index ["rgt"], name: "index_groups_on_rgt"
@@ -102,31 +114,33 @@ ActiveRecord::Schema.define(version: 20190503171210) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
+    t.boolean "show_unit_features"
+    t.text "unit_amenities"
     t.index ["group_id"], name: "index_listings_on_group_id"
   end
 
   create_table "units", force: :cascade do |t|
     t.decimal "ami_percentage", precision: 5, scale: 2
-    t.integer "ami_chart_type"
-    t.integer "ami_chart_year"
     t.decimal "bmr_annual_income_min", precision: 8, scale: 2
     t.decimal "bmr_monthly_income_min", precision: 8, scale: 2
+    t.integer "floor"
     t.decimal "max_household_income", precision: 8, scale: 2
     t.integer "max_occupancy"
     t.integer "min_occupancy"
     t.decimal "monthly_rent", precision: 8, scale: 2
     t.integer "num_bathrooms"
     t.integer "num_bedrooms"
+    t.string "number"
     t.integer "priority_type"
     t.integer "reserved_type"
-    t.integer "status"
-    t.integer "floor"
-    t.string "number"
     t.integer "sq_ft"
+    t.integer "status"
     t.integer "unit_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "listing_id"
+    t.integer "ami_chart_id"
+    t.index ["ami_chart_id"], name: "index_units_on_ami_chart_id"
     t.index ["listing_id"], name: "index_units_on_listing_id"
   end
 

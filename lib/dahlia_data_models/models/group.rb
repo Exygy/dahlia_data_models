@@ -7,8 +7,9 @@ class Group < ApplicationRecord
   enum group_type: [:city, :county]
   after_initialize :set_default_type, :if => :new_record?
 
-  has_many :users # relevant only for Admin site
+  has_many :ami_charts
   has_many :listings
+  has_many :users # relevant only for Admin site
 
   def set_default_type
     self.group_type ||= :city
