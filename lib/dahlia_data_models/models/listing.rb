@@ -11,6 +11,7 @@ class Listing < ApplicationRecord
   include ObjectBase
 
   belongs_to :group, optional: true
+  has_many :preferences
   has_many :units
 
   # TODO: Once we add more models and more fields, consider moving the
