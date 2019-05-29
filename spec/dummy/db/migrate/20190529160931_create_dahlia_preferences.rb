@@ -1,4 +1,4 @@
-class CreateDahliaPreferences < ActiveRecord::Migration<%= migration_version %>
+class CreateDahliaPreferences < ActiveRecord::Migration[5.1]
   def change
     create_table :preferences do |t|
       t.integer :available_units_count
