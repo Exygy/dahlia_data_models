@@ -43,6 +43,7 @@ class Listing < ApplicationRecord
     { custom_api: 'Deposit_Min', domain: 'deposit_min', salesforce: 'Deposit_Min' },
     { custom_api: 'Developer', domain: 'developer', salesforce: 'Developer' },
     { custom_api: 'doesMatch', domain: 'does_match', salesforce: 'doesMatch' },
+    { custom_api: 'Download_URL', domain: 'application_download_url', salesforce: 'Download_URL' },
     { custom_api: 'First_Come_First_Served', domain: 'first_come_first_served', salesforce: 'First_Come_First_Served' },
     { custom_api: 'hasWaitlist', domain: 'has_waitlist', salesforce: 'hasWaitlist' },
     { custom_api: 'Id', domain: 'id', salesforce: 'Id' },
