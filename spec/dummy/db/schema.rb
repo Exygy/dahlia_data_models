@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190528063857) do
+ActiveRecord::Schema.define(version: 20190603170853) do
 
   create_table "ami_charts", force: :cascade do |t|
     t.string "ami_values_file"
@@ -68,55 +68,62 @@ ActiveRecord::Schema.define(version: 20190528063857) do
     t.text "building_selection_criteria"
     t.string "building_state"
     t.string "building_street_address"
-    t.string "building_url"
     t.string "building_zip_code"
     t.text "costs_not_included"
-    t.text "credit_rating"
+    t.text "credit_history"
     t.decimal "deposit_max", precision: 8, scale: 2
     t.decimal "deposit_min", precision: 8, scale: 2
     t.string "developer"
-    t.boolean "does_match", default: false, null: false
-    t.boolean "first_come_first_served", default: false, null: false
-    t.boolean "has_waitlist", default: false, null: false
     t.string "image_url"
-    t.boolean "in_lottery", default: false, null: false
-    t.datetime "last_modified_date"
-    t.text "legal_disclaimers"
-    t.string "listing_id"
-    t.string "lottery_city"
-    t.datetime "lottery_date"
-    t.boolean "lottery_results", default: false, null: false
-    t.datetime "lottery_results_date"
-    t.string "lottery_status"
-    t.string "lottery_street_address"
-    t.string "lottery_venue"
-    t.integer "lottery_winners"
-    t.string "lottery_results_url"
-    t.string "marketing_url"
-    t.integer "maximum_waitlist_size"
+    t.text "program_rules"
+    t.string "external_id"
+    t.integer "waitlist_max_size"
     t.string "name"
     t.string "neighborhood"
-    t.integer "general_application_total"
-    t.integer "number_of_people_currently_on_waitlist"
+    t.integer "waitlist_current_size"
     t.text "pet_policy"
     t.string "priorities_descriptor"
-    t.string "program_type"
-    t.string "project_id"
     t.text "required_documents"
     t.integer "reserved_community_maximum_age"
     t.integer "reserved_community_minimum_age"
     t.string "reserved_descriptor"
-    t.boolean "sase_required_for_lottery_ticket", default: false, null: false
     t.text "smoking_policy"
-    t.integer "total_waitlist_openings"
-    t.integer "units_available"
     t.integer "year_built"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
     t.boolean "show_unit_features"
     t.text "unit_amenities"
+    t.string "application_download_url"
+    t.decimal "application_fee", precision: 5, scale: 2
+    t.text "criminal_background"
+    t.string "leasing_agent_city"
+    t.string "leasing_agent_email"
+    t.string "leasing_agent_name"
+    t.string "leasing_agent_office_hours"
+    t.string "leasing_agent_phone"
+    t.string "leasing_agent_state"
+    t.string "leasing_agent_street"
+    t.string "leasing_agent_title"
+    t.string "leasing_agent_zip"
+    t.text "rental_history"
     t.index ["group_id"], name: "index_listings_on_group_id"
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.integer "available_units_count"
+    t.integer "available_units_percent"
+    t.text "description"
+    t.string "name"
+    t.integer "order"
+    t.string "pdf_url"
+    t.text "preference_proof_requirement_description"
+    t.string "read_more_url"
+    t.boolean "requires_proof"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "listing_id"
+    t.index ["listing_id"], name: "index_preferences_on_listing_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -140,6 +147,7 @@ ActiveRecord::Schema.define(version: 20190528063857) do
     t.datetime "updated_at", null: false
     t.integer "listing_id"
     t.integer "ami_chart_id"
+    t.integer "monthly_rent_as_percent_of_income"
     t.index ["ami_chart_id"], name: "index_units_on_ami_chart_id"
     t.index ["listing_id"], name: "index_units_on_listing_id"
   end
