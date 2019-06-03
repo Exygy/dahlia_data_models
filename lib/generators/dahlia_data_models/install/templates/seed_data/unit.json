@@ -1,6 +1,8 @@
 {
   "ami_percentage": 60,
-  "bmr_monthly_income_min": 2380,
+  "annual_income_max": 56830,
+  "annual_income_min": 28560,
+  "monthly_income_min": 2380,
   "floor": "5",
   "monthly_rent": 1190,
   "num_bathrooms": 1,

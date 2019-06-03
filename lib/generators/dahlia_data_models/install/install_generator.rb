@@ -30,8 +30,16 @@ module DahliaDataModels
           'db/migrate/add_monthly_rent_percentage_to_units.rb', migration_version: migration_version
         migration_template 'create_dahlia_preferences.rb',
           'db/migrate/create_dahlia_preferences.rb', migration_version: migration_version
-          migration_template 'add_application_download_to_listings.rb',
+        migration_template 'add_application_download_to_listings.rb',
           'db/migrate/add_application_download_to_listings.rb', migration_version: migration_version
+        migration_template 'update_listings_fields.rb',
+          'db/migrate/update_listings_fields.rb', migration_version: migration_version
+        migration_template 'update_units_income_fields.rb',
+          'db/migrate/update_units_income_fields.rb', migration_version: migration_version
+        migration_template 'update_listings_show_unit_features.rb',
+          'db/migrate/update_listings_show_unit_features.rb', migration_version: migration_version
+        migration_template 'set_default_on_preferences_requires_proof.rb',
+          'db/migrate/set_default_on_preferences_requires_proof.rb', migration_version: migration_version
       end
 
       def copy_seed_files

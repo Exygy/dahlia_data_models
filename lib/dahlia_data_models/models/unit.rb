@@ -2,7 +2,7 @@
 class Unit < ApplicationRecord
   include ObjectBase
 
-  belongs_to :ami_chart
+  belongs_to :ami_chart, optional: true
   belongs_to :listing
 
   enum ami_chart_type: {
@@ -42,13 +42,13 @@ class Unit < ApplicationRecord
   # TODO: Once we add more models and more fields, consider moving the
   # field mappings into YML files or other places.
   FIELD_NAME_MAPPINGS = [
+    { custom_api: 'Maximum_Household_Income_Allowed', domain: 'annual_income_max', salesforce: 'Maximum_Household_Income_Allowed' },
+    { custom_api: 'BMR_Minimum_Annual_Income_Needed', domain: 'annual_income_min', salesforce: 'BMR_Minimum_Annual_Income_Needed' },
     { custom_api: 'AMI_chart_type', domain: 'ami_chart_type', salesforce: 'AMI_chart_type' },
     { custom_api: 'AMI_chart_year', domain: 'ami_chart_year', salesforce: 'AMI_chart_year' },
     { custom_api: 'of_AMI_for_Pricing_Unit', domain: 'ami_percentage', salesforce: 'of_AMI_for_Pricing_Unit' },
-    { custom_api: 'BMR_Minimum_Annual_Income_Needed', domain: 'bmr_annual_income_min', salesforce: 'BMR_Minimum_Annual_Income_Needed' },
-    { custom_api: 'BMR_Rental_Minimum_Monthly_Income_Needed', domain: 'bmr_monthly_income_min', salesforce: 'BMR_Rental_Minimum_Monthly_Income_Needed' },
+    { custom_api: 'BMR_Rental_Minimum_Monthly_Income_Needed', domain: 'monthly_income_min', salesforce: 'BMR_Rental_Minimum_Monthly_Income_Needed' },
     { custom_api: 'Unit_Floor', domain: 'floor', salesforce: 'Unit_Floor' },
-    { custom_api: 'Maximum_Household_Income_Allowed', domain: 'max_household_income', salesforce: 'Maximum_Household_Income_Allowed' },
     { custom_api: 'maxOccupancy', domain: 'max_occupancy', salesforce: 'Max_Occupancy' },
     { custom_api: 'minOccupancy', domain: 'min_occupancy', salesforce: 'Min_Occupancy' },
     { custom_api: 'BMR_Rent_Monthly', domain: 'monthly_rent', salesforce: 'BMR_Rent_Monthly' },
