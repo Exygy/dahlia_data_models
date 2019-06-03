@@ -2,7 +2,7 @@
 class Unit < ApplicationRecord
   include ObjectBase
 
-  belongs_to :ami_chart
+  belongs_to :ami_chart, optional: true
   belongs_to :listing
 
   enum ami_chart_type: {

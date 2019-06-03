@@ -19,7 +19,7 @@ def create_groups
   end
 
   return if Group.exists?(slug: 'test')
-  Group.create(
+  Group.create!(
     name: 'Test Group',
     slug: 'test',
     domain: Rails.env.production? ? 'herokuapp.com' : 'localhost',
@@ -28,19 +28,19 @@ end
 
 def create_unit(listing)
   unit_fields = parse_from_json_file('unit.json')
-  unit = Unit.create(unit_fields)
+  unit = Unit.new(unit_fields)
   unit.listing = listing
-  unit.save
+  unit.save!
 end
 
 def create_listing_from_file(filename, group)
   listing_fields = parse_from_json_file(filename)
 
-  return false if Listing.exists?(listing_id: listing_fields['listing_id'])
+  return false if Listing.exists?(external_id: listing_fields['external_id'])
 
   listing = Listing.create(listing_fields)
   listing.group = group
-  listing.save
+  listing.save!
 
   create_unit(listing) if listing
 end
