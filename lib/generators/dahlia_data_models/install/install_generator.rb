@@ -34,6 +34,8 @@ module DahliaDataModels
           'db/migrate/add_application_download_to_listings.rb', migration_version: migration_version
         migration_template 'update_listings_fields.rb',
           'db/migrate/update_listings_fields.rb', migration_version: migration_version
+        migration_template 'update_units_income_fields.rb',
+          'db/migrate/update_units_income_fields.rb', migration_version: migration_version
       end
 
       def copy_seed_files
