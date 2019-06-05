@@ -14,7 +14,7 @@ module DahliaDataModels
       end
 
       def copy_migrations
-        Dir.glob('migrations/*.rb').each do |filename|
+        Dir.glob('*.rb', base: "#{self.class.source_root()}/migrations").each do |filename|
           migration_template "migrations/#{filename}",
             "db/migrate/#{filename}", migration_version: migration_version
         end
@@ -22,7 +22,7 @@ module DahliaDataModels
 
       def copy_seed_files
         copy_file "seeds.rb", "db/seeds.rb"
-        Dir.glob('seed_data/*.json').each do |filename|
+        Dir.glob('*.json', base: "#{self.class.source_root()}/seed_data").each do |filename|
           copy_file "seed_data/#{filename}", "db/seed_data/#{filename}"
         end
       end
