@@ -14,41 +14,17 @@ module DahliaDataModels
       end
 
       def copy_migrations
-        migration_template 'create_dahlia_listings.rb',
-          'db/migrate/create_dahlia_listings.rb', migration_version: migration_version
-        migration_template 'create_dahlia_groups.rb',
-          'db/migrate/create_dahlia_groups.rb', migration_version: migration_version
-        migration_template 'create_dahlia_units.rb',
-          'db/migrate/create_dahlia_units.rb', migration_version: migration_version
-        migration_template 'add_unit_related_fields_to_listing.rb',
-          'db/migrate/add_unit_related_fields_to_listing.rb', migration_version: migration_version
-        migration_template 'add_gtm_key_to_groups.rb',
-          'db/migrate/add_gtm_key_to_groups.rb', migration_version: migration_version
-        migration_template 'create_dahlia_ami_charts.rb',
-          'db/migrate/create_dahlia_ami_charts.rb', migration_version: migration_version
-        migration_template 'add_monthly_rent_percentage_to_units.rb',
-          'db/migrate/add_monthly_rent_percentage_to_units.rb', migration_version: migration_version
-        migration_template 'create_dahlia_preferences.rb',
-          'db/migrate/create_dahlia_preferences.rb', migration_version: migration_version
-        migration_template 'add_application_download_to_listings.rb',
-          'db/migrate/add_application_download_to_listings.rb', migration_version: migration_version
-        migration_template 'update_listings_fields.rb',
-          'db/migrate/update_listings_fields.rb', migration_version: migration_version
-        migration_template 'update_units_income_fields.rb',
-          'db/migrate/update_units_income_fields.rb', migration_version: migration_version
-        migration_template 'update_listings_show_unit_features.rb',
-          'db/migrate/update_listings_show_unit_features.rb', migration_version: migration_version
-        migration_template 'set_default_on_preferences_requires_proof.rb',
-          'db/migrate/set_default_on_preferences_requires_proof.rb', migration_version: migration_version
+        Dir.glob('migrations/*.rb').each do |filename|
+          migration_template "migrations/#{filename}",
+            "db/migrate/#{filename}", migration_version: migration_version
+        end
       end
 
       def copy_seed_files
         copy_file "seeds.rb", "db/seeds.rb"
-        copy_file "seed_data/groups.json", "db/seed_data/groups.json"
-        copy_file "seed_data/sj_listing.json", "db/seed_data/sj_listing.json"
-        copy_file "seed_data/smc_listing.json", "db/seed_data/smc_listing.json"
-        copy_file "seed_data/test_listing.json", "db/seed_data/test_listing.json"
-        copy_file "seed_data/unit.json", "db/seed_data/unit.json"
+        Dir.glob('seed_data/*.json').each do |filename|
+          copy_file "seed_data/#{filename}", "db/seed_data/#{filename}"
+        end
       end
 
       private
