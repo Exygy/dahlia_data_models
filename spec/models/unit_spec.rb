@@ -24,9 +24,9 @@ RSpec.describe Unit, type: :model do
 
   it "has correct decimal fields" do
     listing = Listing.create(name: 'Listing 1')
-    unit = Unit.create(listing: listing, bmr_annual_income_min: 30500.50, monthly_rent: "123.45")
+    unit = Unit.create(listing: listing, annual_income_min: 30500.50, monthly_rent: "123.45")
 
-    expect(Unit.find(unit.id).bmr_annual_income_min).to eq(30500.50)
+    expect(Unit.find(unit.id).annual_income_min).to eq(30500.50)
     expect(Unit.find(unit.id).monthly_rent).to eq(123.45)
   end
 end

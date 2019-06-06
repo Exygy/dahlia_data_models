@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190603170853) do
+ActiveRecord::Schema.define(version: 20190603185558) do
 
   create_table "ami_charts", force: :cascade do |t|
     t.string "ami_values_file"
@@ -39,14 +39,6 @@ ActiveRecord::Schema.define(version: 20190603170853) do
     t.index ["lft"], name: "index_groups_on_lft"
     t.index ["parent_id"], name: "index_groups_on_parent_id"
     t.index ["rgt"], name: "index_groups_on_rgt"
-  end
-
-  create_table "listing_images", force: :cascade do |t|
-    t.integer "listing_id"
-    t.string "image_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["listing_id"], name: "index_listing_images_on_listing_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -92,7 +84,7 @@ ActiveRecord::Schema.define(version: 20190603170853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
-    t.boolean "show_unit_features"
+    t.boolean "hide_unit_features", default: false, null: false
     t.text "unit_amenities"
     t.string "application_download_url"
     t.decimal "application_fee", precision: 5, scale: 2
@@ -119,7 +111,7 @@ ActiveRecord::Schema.define(version: 20190603170853) do
     t.string "pdf_url"
     t.text "preference_proof_requirement_description"
     t.string "read_more_url"
-    t.boolean "requires_proof"
+    t.boolean "requires_proof", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "listing_id"
@@ -128,10 +120,10 @@ ActiveRecord::Schema.define(version: 20190603170853) do
 
   create_table "units", force: :cascade do |t|
     t.decimal "ami_percentage", precision: 5, scale: 2
-    t.decimal "bmr_annual_income_min", precision: 8, scale: 2
-    t.decimal "bmr_monthly_income_min", precision: 8, scale: 2
+    t.decimal "annual_income_min", precision: 8, scale: 2
+    t.decimal "monthly_income_min", precision: 8, scale: 2
     t.integer "floor"
-    t.decimal "max_household_income", precision: 8, scale: 2
+    t.decimal "annual_income_max", precision: 8, scale: 2
     t.integer "max_occupancy"
     t.integer "min_occupancy"
     t.decimal "monthly_rent", precision: 8, scale: 2
