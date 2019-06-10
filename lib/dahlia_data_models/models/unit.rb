@@ -5,11 +5,6 @@ class Unit < ApplicationRecord
   belongs_to :ami_chart, optional: true
   belongs_to :listing
 
-  enum ami_chart_type: {
-    alpha: 0,
-    beta: 1,
-    gamma: 2,
-  }
   enum priority_type: {
     hearing_impairments: 0,
     mobility_impairments: 1,
@@ -44,7 +39,6 @@ class Unit < ApplicationRecord
   FIELD_NAME_MAPPINGS = [
     { custom_api: 'Maximum_Household_Income_Allowed', domain: 'annual_income_max', salesforce: 'Maximum_Household_Income_Allowed' },
     { custom_api: 'BMR_Minimum_Annual_Income_Needed', domain: 'annual_income_min', salesforce: 'BMR_Minimum_Annual_Income_Needed' },
-    { custom_api: 'AMI_chart_type', domain: 'ami_chart_type', salesforce: 'AMI_chart_type' },
     { custom_api: 'AMI_chart_year', domain: 'ami_chart_year', salesforce: 'AMI_chart_year' },
     { custom_api: 'of_AMI_for_Pricing_Unit', domain: 'ami_percentage', salesforce: 'of_AMI_for_Pricing_Unit' },
     { custom_api: 'BMR_Rental_Minimum_Monthly_Income_Needed', domain: 'monthly_income_min', salesforce: 'BMR_Rental_Minimum_Monthly_Income_Needed' },
