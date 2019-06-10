@@ -1,15 +1,5 @@
-class InitSchema < ActiveRecord::Migration[5.1]
+class InitDahliaModels < ActiveRecord::Migration[5.1]
   def change
-    create_table "ami_charts" do |t|
-      t.string "ami_values_file"
-      t.integer "chart_type"
-      t.integer "year"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "group_id"
-      t.index ["chart_type", "year", "group_id"], name: "index_ami_charts_on_chart_type_and_year_and_group_id", unique: true
-      t.index ["group_id"], name: "index_ami_charts_on_group_id"
-    end
     create_table "groups" do |t|
       t.string "name"
       t.string "slug"
@@ -27,6 +17,11 @@ class InitSchema < ActiveRecord::Migration[5.1]
       t.index ["parent_id"], name: "index_groups_on_parent_id"
       t.index ["rgt"], name: "index_groups_on_rgt"
     end
+
+    if defined? User
+      add_reference :users, :group, foreign_key: true
+    end
+
     create_table "listings" do |t|
       t.boolean "accepting_applications_at_leasing_agent", default: false, null: false
       t.boolean "accepting_applications_by_po_box", default: false, null: false
@@ -87,21 +82,7 @@ class InitSchema < ActiveRecord::Migration[5.1]
       t.text "rental_history"
       t.index ["group_id"], name: "index_listings_on_group_id"
     end
-    create_table "preferences" do |t|
-      t.integer "available_units_count"
-      t.integer "available_units_percent"
-      t.text "description"
-      t.string "name"
-      t.integer "order"
-      t.string "pdf_url"
-      t.text "preference_proof_requirement_description"
-      t.string "read_more_url"
-      t.boolean "requires_proof", default: false, null: false
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "listing_id"
-      t.index ["listing_id"], name: "index_preferences_on_listing_id"
-    end
+
     create_table "units" do |t|
       t.decimal "ami_percentage", precision: 5, scale: 2
       t.decimal "annual_income_min", precision: 8, scale: 2
@@ -126,6 +107,33 @@ class InitSchema < ActiveRecord::Migration[5.1]
       t.integer "monthly_rent_as_percent_of_income"
       t.index ["ami_chart_id"], name: "index_units_on_ami_chart_id"
       t.index ["listing_id"], name: "index_units_on_listing_id"
+    end
+
+    create_table "ami_charts" do |t|
+      t.string "ami_values_file"
+      t.string "chart_type"
+      t.integer "year"
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.integer "group_id"
+      t.index ["chart_type", "year", "group_id"], name: "index_ami_charts_on_chart_type_and_year_and_group_id", unique: true
+      t.index ["group_id"], name: "index_ami_charts_on_group_id"
+    end
+
+    create_table "preferences" do |t|
+      t.integer "available_units_count"
+      t.integer "available_units_percent"
+      t.text "description"
+      t.string "name"
+      t.integer "order"
+      t.string "pdf_url"
+      t.text "preference_proof_requirement_description"
+      t.string "read_more_url"
+      t.boolean "requires_proof", default: false, null: false
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.integer "listing_id"
+      t.index ["listing_id"], name: "index_preferences_on_listing_id"
     end
   end
 end

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20190603185558) do
 
   create_table "ami_charts", force: :cascade do |t|
     t.string "ami_values_file"
-    t.integer "chart_type"
+    t.string "chart_type"
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
