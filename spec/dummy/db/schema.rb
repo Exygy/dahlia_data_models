@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190603185558) do
+ActiveRecord::Schema.define(version: 20191031132220) do
 
   create_table "ami_charts", force: :cascade do |t|
     t.string "ami_values_file"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20190603185558) do
     t.integer "group_id"
     t.index ["chart_type", "year", "group_id"], name: "index_ami_charts_on_chart_type_and_year_and_group_id", unique: true
     t.index ["group_id"], name: "index_ami_charts_on_group_id"
+  end
+
+  create_table "application_download_urls", force: :cascade do |t|
+    t.integer "listing_id"
+    t.string "label"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -99,6 +107,9 @@ ActiveRecord::Schema.define(version: 20190603185558) do
     t.string "leasing_agent_title"
     t.string "leasing_agent_zip"
     t.text "rental_history"
+    t.integer "building_total_units"
+    t.boolean "accepts_postmark", default: false
+    t.date "postmark_due_date"
     t.index ["group_id"], name: "index_listings_on_group_id"
   end
 

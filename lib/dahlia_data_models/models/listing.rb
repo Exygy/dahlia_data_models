@@ -13,6 +13,7 @@ class Listing < ApplicationRecord
   belongs_to :group, optional: true
   has_many :preferences
   has_many :units
+  has_many :application_download_urls
 
   # TODO: Once we add more models and more fields, consider moving the
   # field mappings into YML files or other places.
