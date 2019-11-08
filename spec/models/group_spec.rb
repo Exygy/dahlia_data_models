@@ -27,10 +27,15 @@ RSpec.describe Group, type: :model do
     g1 = Group.create(name: 'Stage', domain: 'herokuapp.com')
     g2 = Group.create(name: 'Production', domain: 'domain.com')
     g3 = Group.create(name: 'Subdomains', domain: 'subdomain.herokuapp.com')
+    g4 = Group.create(name: 'Multiple domains',
+                      domain: 'sg.herokuapp.com,multiple.com')
 
     expect(Group.for_domain('stage.herokuapp.com').id).to eq(g1.id)
     expect(Group.for_domain('domain.com').id).to eq(g2.id)
     expect(Group.for_domain('subdomain.herokuapp.com').id).to eq(g3.id)
+    expect(Group.for_domain('multiple.com').id).to eq(g4.id)
+    expect(Group.for_domain('sg.herokuapp.com').id).to eq(g4.id)
+    expect(Group.for_domain('sg.multiple.com').id).to eq(g4.id)
   end
 
   it "will provide a slug for translations" do
