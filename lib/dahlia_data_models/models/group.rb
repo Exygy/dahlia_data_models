@@ -20,14 +20,16 @@ class Group < ApplicationRecord
   end
 
   def self.for_domain(domain)
-    if group = Group.find_by(domain: domain)
-      # return an exact match
+    # Domain can be comma separated
+    if group = Group.where('domain like ?', "%#{domain}%").first
       group
     else
       # try a wider search
       # (aka foo.bar.com will match group with bar.com domain)
       groups = self.pluck(:id, :domain)
-      group = groups.find { |item| domain.include? item[1] }
+      group = groups.find do |item|
+        item[1].split(',').any? { |url| domain.include? url }
+      end
       if group
         Group.find(group[0])
       else
